@@ -1,0 +1,774 @@
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+
+    background: var(--background);
+    color: var(--text);
+
+    text-align: center;
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease;
+}
+
+
+/* =========================
+   GAME BOX
+========================= */
+
+.game {
+    width: 90%;
+    max-width: 420px;
+
+    margin: 40px auto;
+    padding: 25px 20px;
+
+    background: var(--card-background);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 8px 25px var(--card-shadow);
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* =========================
+   TEXT
+========================= */
+
+h1 {
+    margin-bottom: 5px;
+}
+
+
+.subtitle {
+    color: var(--card-description);
+}
+
+
+/* =========================
+   BEST SCORE
+========================= */
+
+.best-score-box {
+    margin: 20px 0;
+
+    padding: 12px;
+
+    background: var(--attempt-background);
+
+    border-radius: 10px;
+
+    font-size: 18px;
+}
+
+
+/* =========================
+   ATTEMPTS
+========================= */
+
+.attempt-box {
+    margin: 0;
+
+    padding: 12px;
+
+    background: var(--attempt-background);
+
+    border-radius: 10px;
+
+    font-size: 18px;
+}
+
+
+#attempts {
+    font-weight: bold;
+}
+
+
+/* =========================
+   INPUT
+========================= */
+
+input {
+    width: 80%;
+
+    padding: 14px;
+
+    background: var(--card-background);
+    color: var(--text);
+
+    border: 2px solid #ddd;
+
+    border-radius: 10px;
+
+    font-size: 18px;
+
+    text-align: center;
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease;
+}
+
+
+input:focus {
+    outline: none;
+
+    border-color: var(--text);
+}
+
+
+input:disabled {
+    background: var(--attempt-background);
+
+    cursor: not-allowed;
+
+    color: var(--card-description);
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.game button:not(.theme-toggle) {
+    padding: 13px 22px;
+
+    margin: 7px 5px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: var(--button-background);
+    color: var(--button-text);
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        transform 0.2s ease;
+}
+
+
+.game button:not(.theme-toggle):active {
+    transform: scale(0.95);
+}
+
+
+.game button:disabled {
+    background: #aaa;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================
+   RESULT
+========================= */
+/* Compact result message */
+
+#result {
+    min-height: 0;
+    margin: 8px 0 12px;
+    padding: 0;
+
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.5;
+
+    background: transparent;
+    border: none;
+}
+
+/* Result colors */
+
+#result.low {
+    color: #a98218;
+}
+
+#result.high {
+    color: #278797;
+}
+
+#result.correct {
+    color: #278451;
+}
+
+#result.game-over {
+    color: #c44e59;
+}
+
+/* Dark theme */
+
+body.dark #result.low {
+    color: #d8c77a;
+}
+
+body.dark #result.high {
+    color: #8fc4cc;
+}
+
+body.dark #result.correct {
+    color: #91c7a5;
+}
+
+body.dark #result.game-over {
+    color: #d99ba2;
+}
+
+
+/* =========================
+   HISTORY
+========================= */
+
+#history {
+    margin-top: 20px;
+
+    text-align: left;
+}
+
+
+.guess-item {
+    padding: 8px;
+
+    margin: 5px 0;
+
+    background: var(--attempt-background);
+
+    border-radius: 8px;
+}
+
+
+/* =========================
+   BACK TO GAMES
+========================= */
+
+.game a {
+    display: inline-block;
+
+    margin-top: 15px;
+
+    color: var(--text);
+}
+
+
+
+/* =========================
+   GAME CHARACTER
+========================= */
+
+.game-character {
+    position: relative;
+
+    width: 130px;
+    height: 165px;
+
+    margin: 20px auto 25px;
+
+    animation: characterIdle 2.2s ease-in-out infinite;
+}
+
+
+/* =========================
+   HEAD
+========================= */
+
+.character-head {
+    position: absolute;
+
+    width: 78px;
+    height: 75px;
+
+    top: 5px;
+    left: 26px;
+
+    background: #f2b27b;
+
+    border: 3px solid #222;
+    border-radius: 45% 45% 48% 48%;
+
+    z-index: 5;
+}
+
+
+/* =========================
+   HAIR
+========================= */
+
+.hair {
+    position: absolute;
+
+    width: 82px;
+    height: 35px;
+
+    top: -7px;
+    left: -5px;
+
+    background: #30343b;
+
+    border: 3px solid #222;
+
+    border-radius: 50% 50% 35% 35%;
+}
+
+
+/* Hair spikes */
+
+.hair::after {
+    content: "";
+
+    position: absolute;
+
+    width: 20px;
+    height: 20px;
+
+    background: #30343b;
+
+    left: 8px;
+    bottom: -8px;
+
+    transform: rotate(25deg);
+
+    border-left: 3px solid #222;
+    border-bottom: 3px solid #222;
+}
+
+
+/* =========================
+   EYEBROWS
+========================= */
+
+.eyebrow {
+    position: absolute;
+
+    width: 16px;
+    height: 4px;
+
+    background: #222;
+
+    border-radius: 5px;
+
+    top: 28px;
+}
+
+.left-eyebrow {
+    left: 14px;
+}
+
+.right-eyebrow {
+    right: 14px;
+}
+
+
+/* =========================
+   EYES
+========================= */
+
+.character-eye {
+    position: absolute;
+
+    width: 14px;
+    height: 17px;
+
+    background: white;
+
+    border: 2px solid #222;
+
+    border-radius: 50%;
+
+    top: 34px;
+
+    overflow: hidden;
+}
+
+.left-eye {
+    left: 12px;
+}
+
+.right-eye {
+    right: 12px;
+}
+
+
+/* Pupils */
+
+.character-eye span {
+    position: absolute;
+
+    width: 7px;
+    height: 9px;
+
+    background: #222;
+
+    border-radius: 50%;
+
+    top: 3px;
+    left: 3px;
+}
+
+
+/* =========================
+   NOSE
+========================= */
+
+.nose {
+    position: absolute;
+
+    width: 7px;
+    height: 7px;
+
+    border-right: 2px solid #b8794e;
+    border-bottom: 2px solid #b8794e;
+
+    transform: rotate(45deg);
+
+    left: 34px;
+    top: 48px;
+}
+
+
+/* =========================
+   MOUTH
+========================= */
+
+.character-mouth {
+    position: absolute;
+
+    width: 24px;
+    height: 12px;
+
+    left: 25px;
+    bottom: 10px;
+
+    border-bottom: 3px solid #222;
+
+    border-radius: 0 0 20px 20px;
+}
+
+
+/* =========================
+   NECK
+========================= */
+
+.character-neck {
+    position: absolute;
+
+    width: 20px;
+    height: 15px;
+
+    left: 55px;
+    top: 72px;
+
+    background: #f2b27b;
+
+    border-left: 3px solid #222;
+    border-right: 3px solid #222;
+
+    z-index: 2;
+}
+
+
+/* =========================
+   BODY
+========================= */
+
+.character-body {
+    position: absolute;
+
+    width: 60px;
+    height: 58px;
+
+    left: 35px;
+    top: 82px;
+
+    background: #3a3f48;
+
+    border: 3px solid #222;
+
+    border-radius: 18px 18px 12px 12px;
+
+    z-index: 3;
+}
+
+
+/* Shirt detail */
+
+.shirt-detail {
+    position: absolute;
+
+    width: 28px;
+    height: 8px;
+
+    left: 13px;
+    top: 13px;
+
+    background: #f1f1f1;
+
+    border-radius: 5px;
+}
+
+
+/* =========================
+   ARMS
+========================= */
+
+.character-arm {
+    position: absolute;
+
+    width: 14px;
+    height: 40px;
+
+    background: #f2b27b;
+
+    border: 3px solid #222;
+
+    border-radius: 12px;
+}
+
+.left-arm {
+    left: -14px;
+    top: 7px;
+
+    transform: rotate(18deg);
+}
+
+.right-arm {
+    right: -14px;
+    top: 7px;
+
+    transform: rotate(-18deg);
+}
+
+
+/* Hands */
+
+.hand {
+    position: absolute;
+
+    width: 17px;
+    height: 17px;
+
+    background: #f2b27b;
+
+    border: 3px solid #222;
+
+    border-radius: 50%;
+
+    bottom: -9px;
+    left: -4px;
+}
+
+
+/* =========================
+   LEGS
+========================= */
+
+.character-leg {
+    position: absolute;
+
+    width: 17px;
+    height: 35px;
+
+    top: 135px;
+
+    background: #30343b;
+
+    border: 3px solid #222;
+
+    border-radius: 8px;
+
+    z-index: 2;
+}
+
+.left-leg {
+    left: 44px;
+}
+
+.right-leg {
+    left: 69px;
+}
+
+
+/* =========================
+   SHOES
+========================= */
+
+.shoe {
+    position: absolute;
+
+    width: 25px;
+    height: 12px;
+
+    background: #222;
+
+    border-radius: 10px;
+
+    bottom: -7px;
+}
+
+.left-leg .shoe {
+    left: -7px;
+}
+
+.right-leg .shoe {
+    right: -7px;
+}
+
+
+/* =========================
+   IDLE ANIMATION
+========================= */
+
+@keyframes characterIdle {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-4px);
+    }
+}
+/* =========================
+   CHARACTER EXPRESSIONS
+========================= */
+
+/* Too Low */
+.game-character.thinking .character-mouth {
+    height: 8px;
+    border-bottom: 3px solid #222;
+    border-radius: 50%;
+}
+
+.game-character.thinking {
+    animation: think 0.6s ease-in-out;
+}
+
+@keyframes think {
+    0%, 100% {
+        transform: rotate(0);
+    }
+
+    50% {
+        transform: rotate(-5deg);
+    }
+}
+
+
+/* Too High */
+
+.game-character.surprised .character-mouth {
+    width: 14px;
+    height: 18px;
+
+    left: 30px;
+    bottom: 8px;
+
+    border: 3px solid #222;
+    border-radius: 50%;
+}
+
+.game-character.surprised {
+    animation: surprised 0.5s ease-in-out;
+}
+
+@keyframes surprised {
+
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+/* Correct */
+
+.game-character.happy {
+    animation: happy 0.6s ease-in-out;
+}
+
+.game-character.happy .character-mouth {
+    height: 16px;
+
+    border-bottom: 4px solid #222;
+
+    border-radius: 0 0 25px 25px;
+}
+
+@keyframes happy {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-25px) rotate(-4deg);
+    }
+
+    75% {
+        transform: translateY(0) rotate(4deg);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+/* Game Over */
+
+.game-character.game-over {
+    animation: disappointed 1s ease-in-out;
+}
+
+.game-character.game-over .character-mouth {
+    width: 22px;
+    height: 10px;
+
+    border-top: 3px solid #222;
+    border-bottom: none;
+
+    border-radius: 50%;
+}
+
+@keyframes disappointed {
+
+    0% {
+        transform: rotate(0);
+    }
+
+    50% {
+        transform: rotate(-8deg);
+    }
+
+    100% {
+        transform: rotate(0);
+    }
+}
+.game-character {
+    display: none;
+  }
