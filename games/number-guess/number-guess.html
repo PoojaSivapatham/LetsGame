@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Number Guess - Let's Game!!</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="number-guess.css">
+
+</head>
+
+
+<body>
+
+    <main class="game" id="gameBox">
+
+        <h1>🎯 Number Guess</h1>
+
+      <div class="game-character" id="gameCharacter">
+
+    <div class="character-head">
+
+        <div class="hair"></div>
+
+        <div class="eyebrow left-eyebrow"></div>
+        <div class="eyebrow right-eyebrow"></div>
+
+        <div class="character-eye left-eye">
+            <span></span>
+        </div>
+
+        <div class="character-eye right-eye">
+            <span></span>
+        </div>
+
+        <div class="nose"></div>
+
+        <div class="character-mouth"></div>
+
+    </div>
+
+    <div class="character-neck"></div>
+
+    <div class="character-body">
+
+        <div class="shirt-detail"></div>
+
+        <div class="character-arm left-arm">
+            <div class="hand"></div>
+        </div>
+
+        <div class="character-arm right-arm">
+            <div class="hand"></div>
+        </div>
+
+    </div>
+
+    <div class="character-leg left-leg">
+        <div class="shoe"></div>
+    </div>
+
+    <div class="character-leg right-leg">
+        <div class="shoe"></div>
+    </div>
+
+      </div>
+        <p class="subtitle">
+            Guess the secret number between 1 and 100!<br>
+            You have 10 attempts!
+        </p>
+
+
+        <div class="best-score-box">
+            🏆 Best Score:
+            <span id="bestScore">--</span>
+        </div>
+
+        <input
+    type="number"
+    id="guess"
+    placeholder="Enter your guess"
+>
+
+<div id="result" aria-live="polite">
+    Make your first guess!
+</div>
+
+<button id="guessButton">Guess</button>
+
+<button id="restartButton" hidden>Restart</button>
+
+<div class="attempt-box">
+    Attempts: <span id="attempts">0</span>
+</div>
+
+        <div id="history">
+
+            <h3>Guess History</h3>
+
+            <div id="historyList"></div>
+
+        </div>
+
+
+        <a href="../../index.html">
+            ← Back to Games
+        </a>
+
+    </main>
+     <script src="../../js/main.js"></script>
+
+    <script src="number-guess.js"></script>
+
+</body>
+
+</html>
