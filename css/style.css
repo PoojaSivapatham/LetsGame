@@ -1,0 +1,356 @@
+* {
+    box-sizing: border-box;
+}
+
+
+/* =========================
+   THEME COLORS
+========================= */
+
+:root {
+    --background: #f1f3f6;
+    --text: #222;
+    --hero-background: #222;
+    --hero-text: white;
+    --hero-description: #ddd;
+
+    --card-background: white;
+    --card-description: #666;
+
+    --button-background: #222;
+    --button-text: white;
+    --button-hover: #444;
+
+    --footer-text: #777;
+
+    --card-shadow: rgba(0, 0, 0, 0.12);
+  --attempt-background: #f1f3f6;
+}
+
+
+/* DARK MODE */
+
+body.dark {
+    --background: #181a1f;
+    --text: #f1f1f1;
+    --hero-background: #101114;
+    --hero-text: #ffffff;
+    --hero-description: #bfc2c7;
+
+    --card-background: #24272d;
+    --card-description: #b8bcc3;
+
+    --button-background: #f1f1f1;
+    --button-text: #181a1f;
+    --button-hover: #d8d8d8;
+
+    --footer-text: #9da1a8;
+
+    --card-shadow: rgba(0, 0, 0, 0.35);
+  --attempt-background: #30343b;
+}
+
+
+/* =========================
+   BODY
+========================= */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+
+    background: var(--background);
+    color: var(--text);
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease;
+}
+
+
+/* =========================
+   HERO SECTION
+========================= */
+
+.hero {
+  position: relative;
+    background: var(--hero-background);
+    color: var(--hero-text);
+
+    padding: 55px 20px 65px;
+    text-align: center;
+
+    transition: background 0.3s ease;
+}
+
+
+.hero-content {
+    max-width: 600px;
+    margin: auto;
+}
+
+
+.game-icon {
+    font-size: 55px;
+    margin-bottom: 10px;
+}
+
+
+.hero h1 {
+    margin: 0;
+    font-size: 44px;
+}
+
+
+.hero p {
+    margin-top: 15px;
+    font-size: 18px;
+    line-height: 1.6;
+
+    color: var(--hero-description);
+}
+
+
+/* =========================
+   GAME AREA
+========================= */
+
+.games {
+    width: 90%;
+    max-width: 850px;
+    margin: 35px auto;
+
+    display: grid;
+    gap: 25px;
+}
+
+
+/* =========================
+   GAME CARD
+========================= */
+
+.game-card {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+
+    padding: 30px;
+
+    background: var(--card-background);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 8px 20px var(--card-shadow);
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* Available game */
+
+.number-game {
+    border: 3px solid var(--text);
+}
+
+
+/* Coming soon games */
+
+.coming-game {
+    opacity: 0.75;
+}
+
+
+/* =========================
+   GAME ICON
+========================= */
+
+.card-icon {
+    min-width: 90px;
+    height: 90px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--hero-background);
+    color: var(--hero-text);
+
+    border-radius: 20px;
+
+    font-size: 45px;
+}
+
+
+/* =========================
+   CARD CONTENT
+========================= */
+
+.card-content {
+    flex: 1;
+}
+
+
+.card-content h2 {
+    margin: 0 0 10px;
+
+    font-size: 27px;
+}
+
+
+.card-content p {
+    margin: 0 0 20px;
+
+    color: var(--card-description);
+
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.play-button {
+    display: inline-block;
+
+    padding: 13px 22px;
+
+    background: var(--button-background);
+    color: var(--button-text);
+
+    text-decoration: none;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    transition:
+        transform 0.2s,
+        background 0.2s,
+        color 0.2s;
+}
+
+
+.play-button:hover {
+    background: var(--button-hover);
+
+    transform: scale(1.05);
+}
+
+
+/* Coming soon button */
+
+.play-button.disabled {
+    background: #999;
+    color: white;
+
+    cursor: not-allowed;
+}
+
+
+.play-button.disabled:hover {
+    background: #999;
+    transform: none;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    text-align: center;
+
+    padding: 35px 20px;
+
+    color: var(--footer-text);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .hero {
+        padding: 45px 20px 60px;
+    }
+
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+
+    .hero p {
+        font-size: 16px;
+    }
+
+
+    .game-card {
+        flex-direction: column;
+        text-align: center;
+
+        padding: 30px 20px;
+    }
+
+
+    .card-icon {
+        min-width: 85px;
+        height: 85px;
+    }
+
+
+    .card-content h2 {
+        font-size: 24px;
+    }
+
+
+    .play-button {
+        width: 100%;
+    }
+
+}
+
+/* =========================
+   THEME TOGGLE
+========================= */
+
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    width: 45px;
+    height: 45px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+
+    font-size: 21px;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.08);
+  }
